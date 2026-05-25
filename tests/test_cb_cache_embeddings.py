@@ -23,9 +23,9 @@ from dash._utils import AttributeDict
 from demo_callbacks import load_cached_embeddings
 
 embedding_filenames = [
-    "emb_Advantage_system4.1.json",
+    "emb_Advantage_system4.json",
     "emb_Advantage_system5.4.json",
-    "emb_Advantage2_prototype2.3.json",
+    "emb_Advantage2_prototype2.json",
 ]
 
 json_embeddings_file = '{ \
@@ -43,14 +43,14 @@ class mock_qpu_edges:
 
 class mock_qpu(object):
     def __init__(self):
-        self.edges_per_qpu = {"Advantage_system4.1": edges_5, "Advantage2_prototype2.55": edges_3_5}
+        self.edges_per_qpu = {"Advantage_system4": edges_5, "Advantage2_prototype2.55": edges_3_5}
 
     def __getitem__(self, indx):
         return mock_qpu_edges(self.edges_per_qpu[indx])
 
 
 parametrize_vals = [
-    ("Advantage_system4.1", embedding_filenames, json_embeddings_file),
+    ("Advantage_system4", embedding_filenames, json_embeddings_file),
     ("Advantage2_prototype2.55", embedding_filenames, json_embeddings_file),
     ("Advantage88_prototype7.3", embedding_filenames, json_embeddings_file),
 ]
@@ -87,7 +87,7 @@ def test_cache_embeddings_qpu_selection(mocker, qpu_name_val, embeddings, json_e
     ctx = copy_context()
     output = ctx.run(run_callback)
 
-    if qpu_name_val == "Advantage_system4.1":
+    if qpu_name_val == "Advantage_system4":
         assert output[1] == "5"
 
     if qpu_name_val == "Advantage2_prototype2.55":
