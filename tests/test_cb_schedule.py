@@ -23,14 +23,14 @@ from demo_callbacks import set_schedule
 
 all_schedules = [
     "09-1263A-B_Advantage_system4_fast_annealing_schedule.csv",
-    "09-1273A-E_Advantage_system6.3_fast_annealing_schedule.csv",
+    "09-1273A-E_Advantage_system6_fast_annealing_schedule.csv",
     "09-1302A-G_Advantage2_prototype2.6_fast_annealing_schedule.csv",
     "FALLBACK_SCHEDULE.csv",
 ]
 
 parametrize_vals = [
     ("Advantage_system4", all_schedules, 0, ""),
-    ("Advantage_system6.4", all_schedules, 1, "no-schedule"),
+    ("Advantage_system6", all_schedules, 1, "no-schedule"),
     ("Advantage2_prototype2.3", all_schedules, 2, "no-schedule"),
     ("Advantage25_system7", all_schedules, 3, "no-schedule"),
 ]
