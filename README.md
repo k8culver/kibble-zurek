@@ -242,7 +242,7 @@ You can find more information in the documentation and comments in those files.
 Article [[2]](#2) predicts a characteristic energy scale that is 20% smaller
 than that of the
 [published annealing schedule](https://docs.dwavequantum.com/en/latest/quantum_research/solver_properties_specific.html)
-for quantum computer ``Advantage_system4.1`` used by the Kibble-Zurek calculation
+for quantum computer ``Advantage_system4`` used by the Kibble-Zurek calculation
 in the ``theoretical_kink_density()`` function. A comparable discrepancy between
 the published and spectral-fit schedule is found in [[1]](#1) (see section
 "Extracting annealing schedules" in the supplementary material) for frustrated
