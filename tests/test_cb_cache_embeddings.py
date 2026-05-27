@@ -24,7 +24,7 @@ from demo_callbacks import load_cached_embeddings
 
 embedding_filenames = [
     "emb_Advantage_system4.json",
-    "emb_Advantage_system5.4.json",
+    "emb_Advantage_system5.json",
     "emb_Advantage2_prototype2.json",
 ]
 

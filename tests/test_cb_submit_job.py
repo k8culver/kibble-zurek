@@ -40,7 +40,7 @@ class mock_solver:
 
 class mock_qpus:
     def __init__(self):
-        self.solvers = {"Advantage_system88.4": mock_solver()}
+        self.solvers = {"Advantage_system88": mock_solver()}
 
     def __getitem__(self, indx):
         return self.solvers[indx]
@@ -76,7 +76,7 @@ def test_job_submission(
 
         return submit_job(
             job_submit_time="11:45AM",
-            qpu_name="Advantage_system88.4",
+            qpu_name="Advantage_system88",
             spins=3,
             J=2.3,
             ta=7,
