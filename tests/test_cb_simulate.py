@@ -75,7 +75,7 @@ class mock_qpu_edges:
 
 class mock_qpu(object):
     def __init__(self):
-        self.edges_per_qpu = {"Advantage_system4.3": "dummy"}
+        self.edges_per_qpu = {"Advantage_system4": "dummy"}
 
     def __getitem__(self, indx):
         return mock_qpu_edges(self.edges_per_qpu[indx])
@@ -286,7 +286,7 @@ def test_simulate_states(
             job_submit_state_in,
             before_test,
             spins_val,
-            "Advantage_system4.3",
+            "Advantage_system4",
             embeddings_in,
         )
 
