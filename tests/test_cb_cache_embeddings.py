@@ -43,7 +43,7 @@ class mock_qpu_edges:
 
 class mock_qpu(object):
     def __init__(self):
-        self.edges_per_qpu = {"Advantage_system4": edges_5, "Advantage2_prototype2.55": edges_3_5}
+        self.edges_per_qpu = {"Advantage_system4": edges_5, "Advantage2_prototype2": edges_3_5}
 
     def __getitem__(self, indx):
         return mock_qpu_edges(self.edges_per_qpu[indx])
@@ -51,8 +51,8 @@ class mock_qpu(object):
 
 parametrize_vals = [
     ("Advantage_system4", embedding_filenames, json_embeddings_file),
-    ("Advantage2_prototype2.55", embedding_filenames, json_embeddings_file),
-    ("Advantage88_prototype7.3", embedding_filenames, json_embeddings_file),
+    ("Advantage2_prototype2", embedding_filenames, json_embeddings_file),
+    ("Advantage88_prototype7", embedding_filenames, json_embeddings_file),
 ]
 
 
@@ -90,10 +90,10 @@ def test_cache_embeddings_qpu_selection(mocker, qpu_name_val, embeddings, json_e
     if qpu_name_val == "Advantage_system4":
         assert output[1] == "5"
 
-    if qpu_name_val == "Advantage2_prototype2.55":
+    if qpu_name_val == "Advantage2_prototype2":
         assert output[1] == "3, 5"
 
-    if qpu_name_val == "Advantage88_prototype7.3":
+    if qpu_name_val == "Advantage88_prototype7":
         assert output == ({}, "")
 
 

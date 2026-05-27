@@ -52,6 +52,20 @@ from src.qpu_resources import get_client, get_solvers
 
 SCHEDULES_EMBEDDINGS_PATH = Path("schedules_and_embeddings")
 
+def _schedule_solver_name(file: Path) -> str | None:
+    """Extract solver name from schedule filename."""
+    suffix = "_fast_annealing_schedule"
+    stem = file.stem
+
+    if not stem.endswith(suffix):
+        return None
+
+    _, separator, remainder = stem.partition("_")
+    if not separator:
+        return None
+
+    return remainder.removesuffix(suffix)
+
 
 @dash.callback(
     Output({"type": "to-collapse-class", "index": MATCH}, "className"),
@@ -234,11 +248,11 @@ def set_schedule(qpu_name: str) -> tuple[str, str]:
 
     if qpu_name:
         for file in SCHEDULES_EMBEDDINGS_PATH.glob("*_schedule.csv"):  # get schedule files
-            if qpu_name.split(".")[0] in file.name:  # Accepts & reddens older versions
-                schedule_filename = file.name
+            file_solver_name = _schedule_solver_name(file)
 
-                if qpu_name in schedule_filename:
-                    schedule_filename_class = ""
+            if file_solver_name and qpu_name == file_solver_name:
+                schedule_filename = file.name
+                schedule_filename_class = ""
 
     return schedule_filename, schedule_filename_class
 
@@ -266,7 +280,7 @@ def load_cached_embeddings(qpu_name: str) -> tuple[dict, str]:
 
     if qpu_name:
         for file in SCHEDULES_EMBEDDINGS_PATH.glob("emb_*.json"):  # get embedding files
-            if qpu_name.split(".")[0] in file.name:
+            if qpu_name == file.stem.removeprefix("emb_"):
                 with open(file, "r") as fp:
                     embeddings = json.load(fp)
 
